@@ -10,15 +10,13 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Text;
 using Chatting_Server;
 
 namespace Chatting_Server
 {
     public partial class Form1 : Form
     {
-        private bool isConnected = false;
-        private bool isConnecting = false;
-
         private TcpListener server = null;
         private TcpClient clientSocket = null;
 
@@ -26,6 +24,7 @@ namespace Chatting_Server
         string date;
 
         public Dictionary<TcpClient, string> clientList = new Dictionary<TcpClient, string>();
+        private StringBuilder sb = new StringBuilder();
 
         public Form1()
         {
@@ -65,6 +64,10 @@ namespace Chatting_Server
 
                     SendMessageAll(userName + " 님이 입장하셨습니다.", "", false);
 
+                    SendMessageAll("getClients", "", true);
+                    DisplayText(">> Connected: " + userName);
+                    listBox1.Items.Add(userName);
+
                     handleClient hClient = new handleClient();
                     hClient.OnReceived += new handleClient.MessageDisplayHandler(OnReceived);
                     hClient.OnDisconnected += new handleClient.DisconnectedHandler(OnDisconnected);
@@ -81,7 +84,12 @@ namespace Chatting_Server
         void OnDisconnected(TcpClient clientSocket)
         {
             if (clientList.ContainsKey(clientSocket))
+            {
+                clientList.TryGetValue(clientSocket, out string userName);
+                listBox1.Items.Remove(userName);
                 clientList.Remove(clientSocket);
+                SendMessageAll("getClients", "", true);
+            }
         }
 
         private void OnReceived(string message, string userName)
@@ -92,7 +100,7 @@ namespace Chatting_Server
                 DisplayText(displayMessage);
                 SendMessageAll("leaveChat", userName, true);
             } else {
-                string displayMessage = "From client: " + userName + " : " + message;
+                string displayMessage = "From client [" + userName + "]: " + message;
                 DisplayText(displayMessage);
                 SendMessageAll(message, userName, true);
             }
@@ -111,7 +119,22 @@ namespace Chatting_Server
                 if (flag)
                 {
                     if (message.Equals("leaveChat"))
+                    {
                         buffer = Encoding.Unicode.GetBytes(userName + " 님이 대화방을 나갔습니다.");
+                    }
+                    else if (message.Equals("getClients"))
+                    {
+                        sb.Clear();
+                        sb.Append("clients:");
+                        foreach (var name in clientList.Values)
+                        {
+                            sb.Append(name);
+                            sb.Append("|");
+                        }
+                        sb.Remove(sb.Length-1, 1);
+
+                        buffer = Encoding.Unicode.GetBytes(sb.ToString());
+                    }
                     else
                         buffer = Encoding.Unicode.GetBytes("[" + date + "] " + userName + ": " + message);
                 }
@@ -135,9 +158,6 @@ namespace Chatting_Server
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(textBox1.Text);
-
-            textBox1.Text = String.Empty;
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
