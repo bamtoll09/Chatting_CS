@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatting_Server", "Chatting\Chatting_Server.csproj", "{4B93170D-4070-4AFC-859C-0BE8D4C80409}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chatting_Client", "Chatting_Client\Chatting_Client.csproj", "{D2F24E99-5D82-43BA-8DB6-F7C3C988FC2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48BE0842-1155-4E11-82ED-CEAC180C27AA}"
+	ProjectSection(SolutionItems) = preProject
+		VisualStudio.gitignore = VisualStudio.gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B93170D-4070-4AFC-859C-0BE8D4C80409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B93170D-4070-4AFC-859C-0BE8D4C80409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B93170D-4070-4AFC-859C-0BE8D4C80409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B93170D-4070-4AFC-859C-0BE8D4C80409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F24E99-5D82-43BA-8DB6-F7C3C988FC2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F24E99-5D82-43BA-8DB6-F7C3C988FC2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F24E99-5D82-43BA-8DB6-F7C3C988FC2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F24E99-5D82-43BA-8DB6-F7C3C988FC2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C1343FD-9EA5-458F-A001-E2196F03E9F4}
+	EndGlobalSection
+EndGlobal
