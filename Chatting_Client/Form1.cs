@@ -114,7 +114,7 @@ namespace Chatting_Client
         {
             if (isConnecting == false && isConnected == false)
             {
-                string input = textBox1.Text;
+                string input = textBox1.Text.Trim();
                 string ip = "localhost";
                 int port = 9999;
                 if (input.Contains(":"))
@@ -131,22 +131,23 @@ namespace Chatting_Client
                 {
                     port = Convert.ToInt32(input);
                 }
-                else if (!input.Trim().Equals(""))
+                else if (!(input.Equals("") || input.Equals("localhost")))
                 {
                     DisplayText("[Error] Please Check Input. (IP:PORT) | (IP) | (PORT) | ()");
 
                     return;
                 }
-                isConnecting = true;
-                button1.Text = "connecting...";
-                button1.Enabled = false;
-                textBox1.Text = String.Empty;
 
                 sb.Clear();
                 sb.Append(ip);
                 sb.Append(":");
                 sb.Append(port);
                 Connect(sb.ToString());
+
+                isConnecting = true;
+                button1.Text = "connecting...";
+                button1.Enabled = false;
+                textBox1.Text = String.Empty;
             }
             else if (isConnecting == true && isConnected == false) // Name 설정
             {
@@ -185,11 +186,14 @@ namespace Chatting_Client
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            byte[] buffer = Encoding.Unicode.GetBytes("leaveChat" + "$");
-            stream.Write(buffer, 0, buffer.Length);
-            stream.Flush();
-            Application.ExitThread();
-            Environment.Exit(0);
+            if (isConnecting || isConnected)
+            {
+                byte[] buffer = Encoding.Unicode.GetBytes("leaveChat" + "$");
+                stream.Write(buffer, 0, buffer.Length);
+                stream.Flush();
+                Application.ExitThread();
+                Environment.Exit(0);
+            }
         }
     }
 }

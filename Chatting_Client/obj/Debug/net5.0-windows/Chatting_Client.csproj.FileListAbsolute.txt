@@ -15,3 +15,4 @@ C:\Users\CKIRUser\source\repos\Chatting\Chatting_Client\obj\Debug\net5.0-windows
 C:\Users\CKIRUser\source\repos\Chatting\Chatting_Client\obj\Debug\net5.0-windows\ref\Chatting_Client.dll
 C:\Users\CKIRUser\source\repos\Chatting\Chatting_Client\obj\Debug\net5.0-windows\Chatting_Client.pdb
 C:\Users\CKIRUser\source\repos\Chatting\Chatting_Client\obj\Debug\net5.0-windows\Chatting_Client.genruntimeconfig.cache
+C:\Users\CKIRUser\source\repos\Chatting\Chatting_Client\obj\Debug\net5.0-windows\Chatting_Client.csprojAssemblyReference.cache
