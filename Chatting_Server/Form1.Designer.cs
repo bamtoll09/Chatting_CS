@@ -83,7 +83,7 @@ namespace Chatting_Server
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Server";
             this.ResumeLayout(false);
             this.PerformLayout();
 
